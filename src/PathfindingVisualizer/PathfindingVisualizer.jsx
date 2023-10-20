@@ -69,48 +69,48 @@ visualizeDijkstra() {
   const startNode = grid[START_NODE_ROW][START_NODE_COL];
   const finishNode = grid[FINISH_NODE_ROW][FINISH_NODE_COL];
   const visitedNodesInOrder = dijkstra(grid, startNode, finishNode);
-  const getNodesInShortestPathOrder = getNodesInShortestPathOrder(finishNode);
-  this.animateDijkstra(visitedNodesInOrder, getNodesInShortestPathOrder);
+  const nodesInShortestPathOrder = getNodesInShortestPathOrder(finishNode);
+  this.animateDijkstra(visitedNodesInOrder, nodesInShortestPathOrder);
 }
 
 
 render() {
-   const {grid, mouseIsPressed} = this.state;
+  const {grid, mouseIsPressed} = this.state;
 
   return (
     <>
       <button onClick={() => this.visualizeDijkstra()}>
-       Visualize Dijkstra's Algorithm
+        Visualize Dijkstra's Algorithm
       </button>
       <div className="grid">
-         {grid.map((row, rowIdx) => {
-           return (
+        {grid.map((row, rowIdx) => {
+          return (
             <div key={rowIdx}>
               {row.map((node, nodeIdx) => {
                 const {row, col, isFinish, isStart, isWall} = node;
-                  return (
-                    <Node
-                      key={nodeIdx}
-                      col={col}
-                      isFinish={isFinish}
-                      isStart={isStart}
-                      isWall={isWall}
-                      mouseIsPressed={mouseIsPressed}
-                      onMouseDown={(row, col) => this.handleMouseDown(row, col)}
-                      onMouseEnter={(row, col) =>
-                        this.handleMouseEnter(row, col)
-                      }
-                      onMouseUp={() => this.handleMouseUp()}
-                      row={row}></Node>
-                  );
-                })}
-              </div> 
-            );
-          })}
-        </div>
-      </>
-    );
-  }
+                return (
+                  <Node
+                    key={nodeIdx}
+                    col={col}
+                    isFinish={isFinish}
+                    isStart={isStart}
+                    isWall={isWall}
+                    mouseIsPressed={mouseIsPressed}
+                    onMouseDown={(row, col) => this.handleMouseDown(row, col)}
+                    onMouseEnter={(row, col) =>
+                      this.handleMouseEnter(row, col)
+                    }
+                    onMouseUp={() => this.handleMouseUp()}
+                    row={row}></Node>
+                );
+              })}
+            </div>
+          );
+        })}
+      </div>
+    </>
+  );
+}
 }
 
 const getInitialGrid = () => {
