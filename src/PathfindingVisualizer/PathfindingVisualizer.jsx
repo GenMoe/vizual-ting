@@ -64,10 +64,6 @@ animateShortestPath(nodesInShortestPathOrder) {
 }
 
 
-
-
-
-
 visualizeDijkstra() {
   const {grid} = this.state;
   const startNode = grid[START_NODE_ROW][START_NODE_COL];
