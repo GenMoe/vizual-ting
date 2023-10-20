@@ -17,7 +17,7 @@ export default class PathfindingVisualizer extends Component {
       };
     }
   
-    handleMouseMount() {
+    componentDidMount() {
         const grid = getInitialGrid();
         this.setState({grid});
     }
@@ -41,18 +41,30 @@ export default class PathfindingVisualizer extends Component {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+                  return (
+                    <Node
+                      key={nodeIdx}
+                      col={col}
+                      isFinish={isFinish}
+                      isStart={isStart}
+                      isWall={isWall}
+                      mouseIsPressed={mouseIsPressed}
+                      onMouseDown={(row, col) => this.handleMouseDown(row, col)}
+                      onMouseEnter={(row, col) =>
+                        this.handleMouseEnter(row, col)
+                      }
+                      onMouseUp={() => this.handleMouseUp()}
+                      row={row}></Node>
+                  );
+                })}
+              </div> 
+            );
+          })}
+        </div>
+      </>
+    );
+  }
+}
 
 const getInitialGrid = () => {
     const grid = [];
@@ -64,4 +76,28 @@ const getInitialGrid = () => {
     grid.push(currentRow);
     }
     return grid;
+  };
+
+    const createNode = (col, row) => {
+      return {
+        col,
+        row,
+        isStart: row === START_NODE_ROW && col === START_NODE_COL,
+        isFinish: row === FINISH_NODE_ROW && col === FINISH_NODE_COL,
+        distance: Infinity,
+        isVisited: false,
+        isWall: false,
+        previousNode: null,
+      };
+    };
+
+    const getNewGridWithWallToggled = (grid, row, col) => {
+      const newGrid = grid.slice();
+      const node = newGrid[row][col];
+      const newNode = {
+        ...node,
+        isWall: !node.isWall,
+      };
+      newGrid[row][col] = newNode;
+      return newGrid;    
 };
