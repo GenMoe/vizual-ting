@@ -35,7 +35,6 @@ export default class PathfindingVisualizer extends Component {
   
     handleMouseUp() {
       this.setState({mouseIsPressed: false});
-      this.clearDaGrid();
     }
 
     animateDijkstra(visitedNodesInOrder, nodesInShortestPathOrder) {
