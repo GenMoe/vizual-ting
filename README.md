@@ -9,6 +9,7 @@ Open [http://localhost:3000]
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
+### `The Game`
 
 A 20x50 grid that includes 2 nodes. (Starting-node:green Finished-node:red)
 Create an intricate obstacle around the Starting and Finished node to make it difficult for the algo to find the shortest path to the Finished-node.
